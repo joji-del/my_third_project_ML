@@ -82,34 +82,6 @@ pip install numpy pandas matplotlib seaborn scikit-learn
    - Построение ROC и PR кривых для синтетических данных.
    - Вывод результатов отбора признаков и метрик качества.
 
-## Пример использования
-
-```python
-# Генерация синтетических данных
-X, y = make_classification(n_samples=10000, n_features=10, n_informative=5, n_redundant=5, random_state=42)
-
-# Стандартизация
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
-
-# Разделение данных
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
-# Подбор параметра C для LinearSVC
-best_c = c_best_selection(np.arange(0.001, 100, 1), LinearSVC(), X_train1, y_train1, X_val, y_val)
-print(f"Подобранный параметр C: {best_c}")
-
-# Построение ROC кривой
-clf = LinearSVC(C=best_c)
-clf.fit(X_train, y_train)
-y_pred = clf.predict(X_test)
-fpr, tpr, _ = roc_curve(y_test, y_pred)
-plt.plot(fpr, tpr, label=f"ROC AUC = {auc(fpr, tpr):.5f}")
-plt.xlabel("False Positive Rate")
-plt.ylabel("True Positive Rate")
-plt.legend()
-plt.show()
-```
 
 ## Результаты
 
